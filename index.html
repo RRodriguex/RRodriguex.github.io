@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="ForjaLab: desarrollo web, automatización e infraestructura tecnológica para resolver problemas reales.">
+  <title>ForjaLab | Soluciones digitales</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: #0d1b2d;
+      --text: #eef6ff;
+      --muted: #a8bbd1;
+      --blue: #168bff;
+      --cyan: #47d7ff;
+      --border: #203750;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, 90%);
+      margin-inline: auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      background: rgba(7, 17, 31, .92);
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -.04em;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), #0752a6);
+      box-shadow: 0 0 28px #168bff38;
+      font-size: 1.35rem;
+    }
+
+    .brand span span { color: var(--cyan); }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .nav-links a:hover { color: var(--cyan); }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 110px 0 100px;
+      background:
+        radial-gradient(ellipse at 85% 25%, #0875d51c, transparent 40%),
+        radial-gradient(ellipse at 15% 90%, #00c8ff12, transparent 35%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      align-items: center;
+      gap: 55px;
+    }
+
+    .eyebrow {
+      color: var(--cyan);
+      font-size: .8rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 18px 0;
+      font-size: clamp(2.7rem, 6vw, 4.8rem);
+      line-height: 1.06;
+      letter-spacing: -.055em;
+    }
+
+    h1 span {
+      color: var(--cyan);
+      text-shadow: 0 0 35px #47d7ff25;
+    }
+
+    .hero p {
+      max-width: 620px;
+      color: var(--muted);
+      font-size: 1.12rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 19px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-weight: 700;
+      transition: transform .2s, border-color .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan);
+    }
+
+    .button-primary {
+      color: white;
+      border-color: transparent;
+      background: linear-gradient(120deg, #168bff, #0864c9);
+    }
+
+    .emblem {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 310px;
+    }
+
+    .emblem::before {
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      border: 1px solid #168bff35;
+      border-radius: 50%;
+      box-shadow: 0 0 80px #168bff13, inset 0 0 70px #168bff0d;
+      content: "";
+    }
+
+    .emblem::after {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border: 1px dashed #47d7ff45;
+      border-radius: 50%;
+      content: "";
+      animation: rotate 35s linear infinite;
+    }
+
+    .emblem-icon {
+      z-index: 1;
+      font-size: 7rem;
+      filter: drop-shadow(0 0 30px #168bff6b);
+    }
+
+    .node {
+      position: absolute;
+      z-index: 2;
+      width: 11px;
+      height: 11px;
+      border: 2px solid var(--cyan);
+      border-radius: 50%;
+      background: var(--bg);
+      box-shadow: 0 0 15px var(--cyan);
+    }
+
+    .node-one { top: 40px; right: 24%; }
+    .node-two { bottom: 48px; left: 22%; }
+    .node-three { top: 48%; right: 5%; }
+
+    section { padding: 78px 0; }
+
+    .section-heading {
+      max-width: 680px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -.04em;
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(145deg, #0e1d30, #0a1626);
+    }
+
+    .card-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 47px;
+      height: 47px;
+      margin-bottom: 12px;
+      border: 1px solid #168bff50;
+      border-radius: 12px;
+      background: #168bff12;
+      color: var(--cyan);
+      font-size: 1.35rem;
+    }
+
+    .card h3 { margin: 5px 0 8px; }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .projects { background: #091625; }
+
+    .project-status {
+      display: inline-block;
+      margin-top: 17px;
+      padding: 4px 9px;
+      border: 1px solid #168bff45;
+      border-radius: 20px;
+      color: var(--cyan);
+      font-size: .75rem;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .step-number {
+      color: var(--cyan);
+      font-size: .85rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+
+    .step h3 { margin-bottom: 5px; }
+
+    .step p {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .contact-box {
+      padding: 45px;
+      border: 1px solid #168bff45;
+      border-radius: 20px;
+      background:
+        radial-gradient(ellipse at top right, #168bff1d, transparent 50%),
+        var(--panel);
+      text-align: center;
+    }
+
+    .contact-box h2 {
+      margin-top: 0;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+    }
+
+    .contact-box p {
+      max-width: 590px;
+      margin: 0 auto 25px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    @keyframes rotate {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links { gap: 12px; font-size: .82rem; }
+      .hero { padding: 75px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 15px; }
+      .emblem { min-height: 240px; }
+      .emblem::before { width: 210px; height: 210px; }
+      .emblem::after { width: 165px; height: 165px; }
+      .emblem-icon { font-size: 5.5rem; }
+      .cards { grid-template-columns: 1fr; }
+      .process { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .contact-box { padding: 30px 20px; }
+    }
+
+    @media (max-width: 430px) {
+      nav { align-items: flex-start; padding: 15px 0; flex-direction: column; }
+      .nav-links { width: 100%; justify-content: space-between; }
+      .process { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="container" aria-label="Navegación principal">
+      <a class="brand" href="#inicio" aria-label="ForjaLab, inicio">
+        <span class="brand-mark" aria-hidden="true">⚒</span>
+        <span>Forja<span>Lab</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#metodo">Método</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Laboratorio de soluciones digitales</div>
+          <h1>Transformamos ideas en <span>soluciones digitales.</span></h1>
+          <p>
+            Diseñamos, construimos y mejoramos herramientas tecnológicas
+            para resolver problemas reales: desde aplicaciones web hasta
+            automatización e infraestructura.
+          </p>
+          <div class="actions">
+            <a class="button button-primary" href="#proyectos">Explorar proyectos ↗</a>
+            <a class="button" href="#servicios">Conocer servicios</a>
+          </div>
+        </div>
+        <div class="emblem" aria-hidden="true">
+          <span class="node node-one"></span>
+          <span class="node node-two"></span>
+          <span class="node node-three"></span>
+          <span class="emblem-icon">⚒</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Qué hacemos</div>
+          <h2>Tecnología útil, diseñada para funcionar.</h2>
+          <p>
+            Soluciones prácticas que combinan software, dispositivos y
+            servicios tecnológicos según las necesidades de cada proyecto.
+          </p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⌘</div>
+            <h3>Desarrollo web</h3>
+            <p>Portales, formularios y aplicaciones adaptadas a procesos reales.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">◉</div>
+            <h3>Automatización</h3>
+            <p>Integración de dispositivos, registro de eventos y digitalización de tareas.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⌁</div>
+            <h3>Infraestructura tecnológica</h3>
+            <p>Servidores, redes y despliegues con atención a la seguridad y la continuidad.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="proyectos">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Laboratorio en acción</div>
+          <h2>Proyectos que convierten ideas en herramientas.</h2>
+          <p>Un portafolio en evolución, construido a partir de necesidades concretas.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">✓</div>
+            <h3>Encuesta de satisfacción</h3>
+            <p>Recopilación de opiniones sobre productos y experiencia de entrega.</p>
+            <span class="project-status">En desarrollo</span>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">⌁</div>
+            <h3>Control de comedor</h3>
+            <p>Prototipo de registro de uso mediante identificadores y lectores electrónicos.</p>
+            <span class="project-status">Prototipo</span>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">▤</div>
+            <h3>Consulta de asistencias</h3>
+            <p>Organización y consulta de registros para generar reportes útiles.</p>
+            <span class="project-status">En planificación</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="metodo">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Nuestro método</div>
+          <h2>De la idea a una solución funcional.</h2>
+        </div>
+        <div class="process">
+          <article class="step">
+            <div class="step-number">01 / ENTENDER</div>
+            <h3>Analizar</h3>
+            <p>Definimos el problema y lo que realmente se necesita.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">02 / DISEÑAR</div>
+            <h3>Proponer</h3>
+            <p>Elegimos una arquitectura práctica y sostenible.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">03 / CONSTRUIR</div>
+            <h3>Desarrollar</h3>
+            <p>Implementamos y probamos cada componente.</p>
+          </article>
+          <article class="step">
+            <div class="step-number">04 / MEJORAR</div>
+            <h3>Optimizar</h3>
+            <p>Evaluamos resultados y preparamos mejoras.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-box">
+          <div class="eyebrow">Hablemos de tu proyecto</div>
+          <h2>¿Qué podemos construir contigo?</h2>
+          <p>
+            Cuéntanos qué necesitas resolver y exploremos una solución
+            tecnológica adecuada a tu proyecto.
+          </p>
+          <!-- Agrega aquí un correo profesional o formulario cuando esté listo. -->
+          <a class="button button-primary" href="mailto:contacto@forjalab.me">
+            Solicitar información ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <span>© <span id="year"></span> ForjaLab. Laboratorio de soluciones digitales.</span>
+      <a href="#inicio">Volver al inicio ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
