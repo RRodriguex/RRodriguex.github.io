@@ -50,8 +50,9 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-    }
-
+      
+    } 
+    
     .brand {
       display: flex;
       align-items: center;
@@ -60,16 +61,16 @@
       font-weight: 800;
       letter-spacing: -.04em;
     }
-
-    .brand-mark {
-      display: grid;
-      place-items: center;
+    
+    .brand-logo {
       width: 42px;
       height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--blue), #0752a6);
-      box-shadow: 0 0 28px #168bff38;
-      font-size: 1.35rem;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    
+    .brand-mark {
+      display: none;
     }
 
     .brand span span { color: var(--cyan); }
@@ -357,7 +358,13 @@
   <header>
     <nav class="container" aria-label="Navegación principal">
       <a class="brand" href="#inicio" aria-label="ForjaLab, inicio">
-        <span class="brand-mark" aria-hidden="true">⚒</span>
+  <img
+    class="brand-logo"
+    src="assets/forjalab-logo.png"
+    alt=""
+  >
+  <span>Forja<span>Lab</span></span>
+</a>
         <span>Forja<span>Lab</span></span>
       </a>
       <div class="nav-links">
